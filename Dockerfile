@@ -1,7 +1,7 @@
 FROM node:8-slim
 
 LABEL "com.github.actions.name"="Monorepo PR Repo Labeler"
-LABEL "com.github.actions.description"="Labeling pull requests with the repo(s) that they impact for monorepos."
+LABEL "com.github.actions.description"="Label PRs with the repo(s) that they impact for monorepos"
 LABEL "com.github.actions.icon"="git-merge"
 LABEL "com.github.actions.color"="green"
 
