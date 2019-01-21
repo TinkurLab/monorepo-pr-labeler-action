@@ -38,6 +38,7 @@ module.exports.listFiles = async function(
     .then(data => {
       return data
     })
+
     .catch(err => {
       console.log(err)
     })
