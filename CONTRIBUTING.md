@@ -12,7 +12,7 @@ We'd also love PRs. If you're thinking of a large PR, we advise opening up an is
 
 Tests are written in [Jest](https://jestjs.io/en/). Tests automatically run on check in.
 
-Test Status: [![CircleCI](https://circleci.com/gh/adamzolyak/adamzolyak/monorepo-pr-labeler-action/tree/master.svg?style=svg)](https://circleci.com/gh/adamzolyak/checklist-checker-action/tree/master)
+Test Status: [![CircleCI](https://circleci.com/gh/adamzolyak/monorepo-pr-labeler-action/tree/master.svg?style=svg)](https://circleci.com/gh/adamzolyak/checklist-checker-action/tree/master)
 
 ### To run tests locally
 
