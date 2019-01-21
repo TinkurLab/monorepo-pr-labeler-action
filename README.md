@@ -25,11 +25,11 @@ To setup this action:
 
 ```
 workflow "Monorepo PR Repo Labeler" {
-  resolves = ["Label PR"]
+  resolves = ["Label PR Monorepos"]
   on = "pull_request"
 }
 
-action "Label PR" {
+action "Label PR Monorepos" {
   uses = "adamzolyak/monorepo-pr-labeler-action@master"
   secrets = ["GITHUB_TOKEN"]
 }
