@@ -27,13 +27,15 @@ module.exports.listFiles = async function(
   eventRepo,
   eventIssueNumber
 ) {
-  return await octokit.pulls
-    .listFiles({
-      owner: eventOwner,
-      repo: eventRepo,
-      number: eventIssueNumber
-    })
-    .then(({ data, headers, status }) => {
+  const options = octokit.pulls.listFiles.endpoint.merge({
+    owner: eventOwner,
+    repo: eventRepo,
+    number: eventIssueNumber
+  })
+
+  return await octokit
+    .paginate(options)
+    .then(data => {
       return data
     })
     .catch(err => {
