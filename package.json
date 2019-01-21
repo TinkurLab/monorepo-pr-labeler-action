@@ -1,0 +1,35 @@
+{
+  "name": "actions_monorepoprlabeler",
+  "version": "0.0.1",
+  "description": "A GitHub Action that labels pull requests with the repo(s) that they impact for monorepos.",
+  "engines": {
+    "node": ">= 8.12.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "GITHUB_TOKEN='00000' GITHUB_REPOSITORY='waffleio/waffle.io' GITHUB_EVENT_PATH='./tests/fixtures/actionTrigger.json' jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamzolyak/monorepo-pr-labeler-action.git"
+  },
+  "keywords": [
+    "github",
+    "github-action",
+    "github-actions"
+  ],
+  "author": "Adam Zolyak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamzolyak/monorepo-pr-labeler-action/issues"
+  },
+  "homepage": "https://www.tinkurlab.com",
+  "dependencies": {
+    "@octokit/rest": "^16.8.1",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}

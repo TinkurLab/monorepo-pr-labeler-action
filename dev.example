@@ -1,0 +1,6 @@
+
+export GITHUB_TOKEN="12345"
+export GITHUB_REPOSITORY="adamzolyak/actions-playground"
+export GITHUB_EVENT_PATH="/action-checklistchecker/tests/fixtures/actionTrigger.json"
+
+node index.js
