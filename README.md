@@ -1,6 +1,6 @@
 # 🚊 Monorepo PR Repo Labeler - GitHub Action
 
-A [GitHub Action](https://github.com/features/actions) that labels pull requests with the repo(s) that they impact for [monorepos](https://en.wikipedia.org/wiki/Monorepo).
+A [GitHub Action](https://github.com/features/actions) that labels pull requests with the repo(s) that they impact in a [monorepo](https://en.wikipedia.org/wiki/Monorepo).
 
 ## How It Works
 

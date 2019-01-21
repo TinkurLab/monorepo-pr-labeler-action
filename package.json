@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "GITHUB_TOKEN='00000' GITHUB_REPOSITORY='waffleio/waffle.io' GITHUB_EVENT_PATH='./tests/fixtures/actionTrigger.json' jest --watchAll"
+    "test": "GITHUB_TOKEN='00000' GITHUB_REPOSITORY='waffleio/waffle.io' GITHUB_EVENT_PATH='./tests/fixtures/actionTrigger.json' jest"
   },
   "repository": {
     "type": "git",
