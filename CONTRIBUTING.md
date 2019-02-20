@@ -27,7 +27,7 @@ Test Status: [![CircleCI](https://circleci.com/gh/adamzolyak/monorepo-pr-labeler
 ```bash
 export GITHUB_TOKEN="12345"
 export GITHUB_REPOSITORY="adamzolyak/actions-playground"
-export GITHUB_EVENT_PATH="/tests/fixtures/actionTrigger.json"
+export GITHUB_EVENT_PATH="/monorepo-pr-labeler-action/tests/fixtures/actionTrigger.json"
 
 node index.js
 ```
