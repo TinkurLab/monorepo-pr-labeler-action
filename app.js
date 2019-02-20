@@ -13,8 +13,6 @@ octokit.authenticate({
   token: process.env.GITHUB_TOKEN
 })
 
-console.log('process.env: ', process)
-
 //set eventOwner and eventRepo based on action's env variables
 const eventOwnerAndRepo = process.env.GITHUB_REPOSITORY
 const eventOwner = helpers.getOwner(eventOwnerAndRepo)
