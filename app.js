@@ -5,13 +5,13 @@ const _ = require('underscore')
 
 //require octokit rest.js
 //more info at https://github.com/octokit/rest.js
-const octokit = require('@octokit/rest')()
-
-//set octokit auth to action's GITHUB_TOKEN env variable
-octokit.authenticate({
-  type: 'app',
-  token: process.env.GITHUB_TOKEN
+const Octokit = require('@octokit/rest')
+const octokit = new Octokit({
+  auth: `token ${process.env.GITHUB_TOKEN}`
 })
+
+let baseDirectories = ''
+if (process.env.BASE_DIRS) baseDirectories = `(?:${process.env.BASE_DIR})\/`
 
 //set eventOwner and eventRepo based on action's env variables
 const eventOwnerAndRepo = process.env.GITHUB_REPOSITORY
@@ -38,7 +38,9 @@ async function prMonorepoRepoLabeler() {
   )
 
   //get monorepo repo for each file
-  prFilesRepos = prFiles.map(({ filename }) => helpers.getMonorepo(filename))
+  prFilesRepos = prFiles.map(({ filename }) =>
+    helpers.getMonorepo(baseDirectories, filename)
+  )
 
   //reduce to unique repos
   const prFilesReposUnique = _.uniq(prFilesRepos)

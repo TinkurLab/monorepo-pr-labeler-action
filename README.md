@@ -1,17 +1,17 @@
 # 🚊 Monorepo PR Repo Labeler - GitHub Action
 
-A [GitHub Action](https://github.com/features/actions) that labels pull requests with the repo(s) that they impact in a [monorepo](https://en.wikipedia.org/wiki/Monorepo).
+A [GitHub Action](https://github.com/features/actions) that labels pull requests with the modules(s) that are impacted in a [monorepo](https://en.wikipedia.org/wiki/Monorepo).
 
 ## How It Works
 
-This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a monorepo repo (ex. `/directory/...` from the root of the monorepo). If one or more monorepos are found, the pull request is labeled with a label for each monorepo repo. Directories that beging with a dot (ex. `/.directory/`) are ignored.
+This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/directory1/...` from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo. Directories that beging with a dot (ex. `/.directory/`) are ignored.
 
 ## Examples
 
-Example of PR that has changes in two monorepo repos:
+Example of PR that has changes in two modules:
 ![GitHub Logo](./docs/labels.png)
 
-Example of monorepo repo structure:
+Example of monorepo module structure:
 ![GitHub Logo](./docs/repos.png)
 
 ## Installation
@@ -32,6 +32,23 @@ workflow "Monorepo PR Repo Labeler" {
 action "Label PR Monorepos" {
   uses = "adamzolyak/monorepo-pr-labeler-action@master"
   secrets = ["GITHUB_TOKEN"]
+}
+```
+
+Optionally add a `BASE_DIRS` config under `env` if modules are located within a directory. You can add one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`) in the config.
+
+```
+workflow "Monorepo PR Repo Labeler" {
+  resolves = ["Label PR Monorepos"]
+  on = "pull_request"
+}
+
+action "Label PR Monorepos" {
+  uses = "adamzolyak/monorepo-pr-labeler-action@master"
+  secrets = ["GITHUB_TOKEN"]
+  env = {
+    BASE_DIRS = "directory1|directory2"
+  }
 }
 ```
 
