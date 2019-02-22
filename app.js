@@ -11,7 +11,7 @@ const octokit = new Octokit({
 })
 
 let baseDirectories = ''
-if (process.env.BASE_DIRS) baseDirectories = `(?:${process.env.BASE_DIR})\/`
+if (process.env.BASE_DIRS) baseDirectories = `(?:${process.env.BASE_DIRS})\/`
 
 //set eventOwner and eventRepo based on action's env variables
 const eventOwnerAndRepo = process.env.GITHUB_REPOSITORY
