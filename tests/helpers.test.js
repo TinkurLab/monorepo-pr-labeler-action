@@ -21,24 +21,45 @@ describe('getRepo', () => {
 describe('getMonorepo', () => {
   it('should return monorepo repo if it exists for the file', async () => {
     const fileName = 'repo1/path/path/code.js'
+    const baseDirectories = ''
 
-    const result = await helpers.getMonorepo(fileName)
+    const result = await helpers.getMonorepo(baseDirectories, fileName)
+
+    expect(result).toBe('repo1')
+  })
+
+  it('should return monorepo repo within subdirectory if it exists for the file', async () => {
+    const fileName = 'directory1/repo1/path/path/code.js'
+    const baseDirectories = `(?:directory1)\/`
+
+    const result = await helpers.getMonorepo(baseDirectories, fileName)
+
+    expect(result).toBe('repo1')
+  })
+
+  it('should return monorepo repo within multiple subdirectories if it exists for the file', async () => {
+    const fileName = 'directory2/repo1/path/path/code.js'
+    const baseDirectories = `(?:directory1|directory2)\/`
+
+    const result = await helpers.getMonorepo(baseDirectories, fileName)
 
     expect(result).toBe('repo1')
   })
 
   it('should return false if monorepo does NOT exists for the file', async () => {
     const fileName = 'code.js'
+    const baseDirectories = ''
 
-    const result = await helpers.getMonorepo(fileName)
+    const result = await helpers.getMonorepo(baseDirectories, fileName)
 
     expect(result).toBe(false)
   })
 
   it('should return false if monorepo starts with a .', async () => {
     const fileName = '.github/main.workflow'
+    const baseDirectories = ''
 
-    const result = await helpers.getMonorepo(fileName)
+    const result = await helpers.getMonorepo(baseDirectories, fileName)
 
     expect(result).toBe(false)
   })
