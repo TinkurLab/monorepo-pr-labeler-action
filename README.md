@@ -4,7 +4,7 @@ A [GitHub Action](https://github.com/features/actions) that labels pull requests
 
 ## How It Works
 
-This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/directory1/...` from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo. Directories that beging with a dot (ex. `/.directory/`) are ignored.
+This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/directory1/...` from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo. Directories that beging with a dot (ex. `/.directory/`) are ignored. The action also supports configuring a list of one or more base directories if modules are within base directories (ex. `/.directory/directory/`) such as within [Lerna projects](https://github.com/lerna/lerna).
 
 ## Examples
 
@@ -20,37 +20,27 @@ To use this GitHub Action, you must have access to [GitHub Actions](https://gith
 
 To setup this action:
 
-1. Create a `.github/main.workflow` in your GitHub repo.
-2. Add the following code to the `main.workflow` file and commit it to the repo's `master` branch.
+1. Create a `.github/worksflows/main.yml` in your GitHub repo ([more info](https://help.github.com/en/articles/configuring-a-workflow)).
+2. Add the following code to the `main.yml` file and commit it to the repo's `master` branch.
 
+```yaml
+name: Monorepo PR Repo Labeler
+
+on: pull_request
+
+jobs:
+  labelPR:
+    name: Label PR With Repo(s)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label PRs
+        uses: adamzolyak/monorepo-pr-labeler-action@patching
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_DIRS: 'directory1|directory2'
 ```
-workflow "Monorepo PR Repo Labeler" {
-  resolves = ["Label PR Monorepos"]
-  on = "pull_request"
-}
 
-action "Label PR Monorepos" {
-  uses = "adamzolyak/monorepo-pr-labeler-action@master"
-  secrets = ["GITHUB_TOKEN"]
-}
-```
-
-Optionally add a `BASE_DIRS` config under `env` if modules are located within a directory. You can add one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`) in the config.
-
-```
-workflow "Monorepo PR Repo Labeler" {
-  resolves = ["Label PR Monorepos"]
-  on = "pull_request"
-}
-
-action "Label PR Monorepos" {
-  uses = "adamzolyak/monorepo-pr-labeler-action@master"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    BASE_DIRS = "directory1|directory2"
-  }
-}
-```
+Optionally add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
 
 3. Whenever you open, edit, close, etc a pull request, the action will run!
 
@@ -60,4 +50,4 @@ If you have suggestions for how this GitHub Action could be improved, or want to
 
 ## License
 
-[ISC](LICENSE) © 2018 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
+[ISC](LICENSE) © 2019 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
