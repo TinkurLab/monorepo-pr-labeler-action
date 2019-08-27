@@ -31,7 +31,7 @@ export GITHUB_EVENT_PATH="/monorepo-pr-labeler-action/tests/fixtures/actionTrigg
 
 export BASE_DIRS="directory1|directory2"
 
-node index.js
+node app.js
 ```
 
 3. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data

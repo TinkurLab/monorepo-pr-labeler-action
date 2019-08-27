@@ -30,7 +30,7 @@ module.exports.listFiles = async function(
   const options = octokit.pulls.listFiles.endpoint.merge({
     owner: eventOwner,
     repo: eventRepo,
-    number: eventIssueNumber
+    pull_number: eventIssueNumber
   })
 
   return await octokit
@@ -64,8 +64,8 @@ module.exports.addLabel = function(
     .addLabels({
       owner: eventOwner,
       repo: eventRepo,
-      number: eventIssueNumber,
-      labels: [label] // ['Incomplete Tasks']
+      issue_number: eventIssueNumber,
+      labels: [label] // ['Label 1']
     })
     .then(({ data, headers, status }) => {
       // handle data
