@@ -4,7 +4,7 @@ A [GitHub Action](https://github.com/features/actions) that labels pull requests
 
 ## How It Works
 
-This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/directory1/...` from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo. Directories that beging with a dot (ex. `/.directory/`) are ignored.
+This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/directory1/...` from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo. Directories that beging with a dot (ex. `/.directory/`) are ignored. The action also supports configuring a list of one or more base directories if modules are within base directories (ex. `/.directory/directory/`) such as within [Lerna projects](https://github.com/lerna/lerna).
 
 ## Examples
 
@@ -30,7 +30,7 @@ on: pull_request
 
 jobs:
   labelPR:
-    name: Lable PR With Repo(s)
+    name: Label PR With Repo(s)
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
@@ -40,7 +40,7 @@ jobs:
           BASE_DIRS: 'directory1|directory2'
 ```
 
-Optionally add a `BASE_DIRS` variable under `env` if each module is located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
+Optionally add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
 
 3. Whenever you open, edit, close, etc a pull request, the action will run!
 
