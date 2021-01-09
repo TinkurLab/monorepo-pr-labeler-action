@@ -12,6 +12,7 @@ describe('prMonorepoRepoLabeler', () => {
     let eventData, fileData
     helpers.readFilePromise = jest.fn(() => eventData)
     helpers.listFiles = jest.fn(() => fileData)
+    helpers.getLabel = jest.fn((repo) => repo);
     helpers.getMonorepo = jest.fn()
     helpers.addLabel = jest.fn()
     eventData = `{
@@ -51,6 +52,7 @@ describe('prMonorepoRepoLabeler', () => {
     let eventData, fileData
     helpers.readFilePromise = jest.fn(() => eventData)
     helpers.listFiles = jest.fn(() => fileData)
+    helpers.getLabel = jest.fn((repo) => repo);
     helpers.getMonorepo = jest.fn()
     helpers.addLabel = jest.fn()
     eventData = `{

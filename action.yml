@@ -1,5 +1,12 @@
 name: "Monorepo PR Repo Labeler"
 description: "Monorepo PR Repo Labeler"
+inputs:
+  prefix:
+    description: Prefix to repo name to be used in label
+    required: false
+  suffix:
+    description: Suffix to repo name to be used in label
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
