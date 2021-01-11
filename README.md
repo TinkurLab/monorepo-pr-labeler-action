@@ -35,17 +35,61 @@ jobs:
         uses: adamzolyak/monorepo-pr-labeler-action@patching
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BASE_DIRS: 'directory1|directory2'
+          BASE_DIRS: 'directory1|directory2' # optional
         with:
           prefix: 'sample_prefix' # optional
           suffix: 'sample_suffix' # optional
 ```
 
 ### Options
- - Add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
- - Add `prefix` or `suffix` under `with` if you wish to add prefix or suffix the repo name in the label respectively.
+
+- Add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
+- Add `prefix` or `suffix` under `with` if you wish to add prefix or suffix the repo name in the label respectively.
 
 3. Whenever you open, edit, close, etc a pull request, the action will run!
+
+### Example: Repos in sub directories
+
+The following configuration will look for repos within the `folderA` and `folderB` directories:
+
+```yaml
+name: Monorepo PR Repo Labeler
+
+on: pull_request
+
+jobs:
+  labelPR:
+    name: Label PR With Repo(s)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label PRs
+        uses: adamzolyak/monorepo-pr-labeler-action@patching
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_DIRS: 'folderA|folderB' # optional
+```
+
+### Example: Adding a custom suffix to labels
+
+The following configuration will prefix each label with `🗂 ` - ex.`🗂 Repo A`, `🗂 Repo B`, etc:
+
+```yaml
+name: Monorepo PR Repo Labeler
+
+on: pull_request
+
+jobs:
+  labelPR:
+    name: Label PR With Repo(s)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label PRs
+        uses: adamzolyak/monorepo-pr-labeler-action@patching
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          prefix: '🗂 ' # optional
+```
 
 ## Contributing
 
