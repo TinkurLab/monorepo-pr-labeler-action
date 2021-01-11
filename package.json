@@ -1,6 +1,6 @@
 {
   "name": "actions_monorepoprlabeler",
-  "version": "0.0.1",
+  "version": "2.1.0",
   "description": "A GitHub Action that labels pull requests with the repo(s) that they impact for monorepos.",
   "engines": {
     "node": ">= 14.15.4"
