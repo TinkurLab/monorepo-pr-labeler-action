@@ -36,9 +36,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_DIRS: 'directory1|directory2'
+        with:
+          prefix: 'sample_prefix' # optional
+          suffix: 'sample_suffix' # optional
 ```
 
-Optionally add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
+### Options
+ - Add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
+ - Add `prefix` or `suffix` under `with` if you wish to add prefix or suffix the repo name in the label respectively.
 
 3. Whenever you open, edit, close, etc a pull request, the action will run!
 

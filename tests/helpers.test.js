@@ -86,3 +86,45 @@ describe('addLabel', () => {
     ])
   })
 })
+
+describe('getLabel', () => {
+  afterEach(() => {
+    delete process.env.INPUT_PREFIX;
+    delete process.env.INPUT_SUFFIX;
+  });
+
+  it('Returns label with prefix & suffic attached to repo name', () => {
+    process.env.INPUT_PREFIX = 'sample_prefix';
+    process.env.INPUT_SUFFIX = 'sample_suffix';
+
+    const repoName = 'sample_repo';
+
+    expect(helpers.getLabel(repoName)).
+      toBe('sample_prefix sample_repo sample_suffix');
+  });
+
+  it('Returns label only with suffix when only suffix passed as input', () => {
+    process.env.INPUT_SUFFIX = 'sample_suffix';
+    const repoName = 'sample_repo';
+
+    expect(helpers.getLabel(repoName))
+      .toBe('sample_repo sample_suffix');
+  });
+
+  it('Returns label only with prefix when only prefix passed as input', () => {
+    process.env.INPUT_SUFFIX = 'sample_prefix';
+    const repoName = 'sample_repo';
+
+    expect(helpers.getLabel(repoName))
+      .toBe('sample_repo sample_prefix');
+  });
+
+  it('Returns only repo name when no prefix & suffix', () => {
+    expect(helpers.getLabel('sample_repo'))
+      .toBe('sample_repo');
+  });
+
+  it('returns empty string without input & without argument', () => {
+    expect(helpers.getLabel()).toBe('');
+  });
+});
