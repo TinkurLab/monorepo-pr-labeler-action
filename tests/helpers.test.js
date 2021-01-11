@@ -1,8 +1,8 @@
 const helpers = require('../helpers')
-let { Octokit } = require('@Octokit/rest')
+let { octokit } = require('@octokit/rest')
 
-Octokit = jest.fn()
-Octokit.authenticate = jest.fn()
+octokit = jest.fn()
+octokit.authenticate = jest.fn()
 
 describe('getOwner', () => {
   it('should return owner when passed GITHUB_REPOSITORY env variable', () => {
@@ -67,15 +67,15 @@ describe('getMonorepo', () => {
 
 describe('addLabel', () => {
   it('should add label to issue', async () => {
-    let Octokit = {
+    let octokit = {
       issues: {
         addLabels: jest.fn().mockResolvedValue({ something: 'something' }),
       },
     }
 
-    const result = await helpers.addLabel(Octokit, 'waffleio', 'waffle.io', '1', 'Incomplete Tasks')
-    expect(Octokit.issues.addLabels).toHaveBeenCalledTimes(1)
-    expect(Octokit.issues.addLabels.mock.calls[0][0].labels).toEqual(['Incomplete Tasks'])
+    const result = await helpers.addLabel(octokit, 'waffleio', 'waffle.io', '1', 'Incomplete Tasks')
+    expect(octokit.issues.addLabels).toHaveBeenCalledTimes(1)
+    expect(octokit.issues.addLabels.mock.calls[0][0].labels).toEqual(['Incomplete Tasks'])
   })
 })
 
