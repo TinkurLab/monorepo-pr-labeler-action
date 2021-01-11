@@ -30,6 +30,8 @@ jobs:
 
       - run: npm install jest
 
+      - run: npm list | grep octo
+
       - save_cache:
           paths:
             - node_modules
