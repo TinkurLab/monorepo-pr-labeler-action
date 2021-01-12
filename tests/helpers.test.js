@@ -1,5 +1,5 @@
 const helpers = require('../helpers')
-let octokit = require('@octokit/rest')()
+let { octokit } = require('@octokit/rest')
 
 octokit = jest.fn()
 octokit.authenticate = jest.fn()
@@ -69,62 +69,50 @@ describe('addLabel', () => {
   it('should add label to issue', async () => {
     let octokit = {
       issues: {
-        addLabels: jest.fn().mockResolvedValue({ something: 'something' })
-      }
+        addLabels: jest.fn().mockResolvedValue({ something: 'something' }),
+      },
     }
 
-    const result = await helpers.addLabel(
-      octokit,
-      'waffleio',
-      'waffle.io',
-      '1',
-      'Incomplete Tasks'
-    )
+    const result = await helpers.addLabel(octokit, 'waffleio', 'waffle.io', '1', 'Incomplete Tasks')
     expect(octokit.issues.addLabels).toHaveBeenCalledTimes(1)
-    expect(octokit.issues.addLabels.mock.calls[0][0].labels).toEqual([
-      'Incomplete Tasks'
-    ])
+    expect(octokit.issues.addLabels.mock.calls[0][0].labels).toEqual(['Incomplete Tasks'])
   })
 })
 
 describe('getLabel', () => {
   afterEach(() => {
-    delete process.env.INPUT_PREFIX;
-    delete process.env.INPUT_SUFFIX;
-  });
+    delete process.env.INPUT_PREFIX
+    delete process.env.INPUT_SUFFIX
+  })
 
   it('Returns label with prefix & suffic attached to repo name', () => {
-    process.env.INPUT_PREFIX = 'sample_prefix';
-    process.env.INPUT_SUFFIX = 'sample_suffix';
+    process.env.INPUT_PREFIX = 'sample_prefix'
+    process.env.INPUT_SUFFIX = 'sample_suffix'
 
-    const repoName = 'sample_repo';
+    const repoName = 'sample_repo'
 
-    expect(helpers.getLabel(repoName)).
-      toBe('sample_prefix sample_repo sample_suffix');
-  });
+    expect(helpers.getLabel(repoName)).toBe('sample_prefix sample_repo sample_suffix')
+  })
 
   it('Returns label only with suffix when only suffix passed as input', () => {
-    process.env.INPUT_SUFFIX = 'sample_suffix';
-    const repoName = 'sample_repo';
+    process.env.INPUT_SUFFIX = 'sample_suffix'
+    const repoName = 'sample_repo'
 
-    expect(helpers.getLabel(repoName))
-      .toBe('sample_repo sample_suffix');
-  });
+    expect(helpers.getLabel(repoName)).toBe('sample_repo sample_suffix')
+  })
 
   it('Returns label only with prefix when only prefix passed as input', () => {
-    process.env.INPUT_SUFFIX = 'sample_prefix';
-    const repoName = 'sample_repo';
+    process.env.INPUT_SUFFIX = 'sample_prefix'
+    const repoName = 'sample_repo'
 
-    expect(helpers.getLabel(repoName))
-      .toBe('sample_repo sample_prefix');
-  });
+    expect(helpers.getLabel(repoName)).toBe('sample_repo sample_prefix')
+  })
 
   it('Returns only repo name when no prefix & suffix', () => {
-    expect(helpers.getLabel('sample_repo'))
-      .toBe('sample_repo');
-  });
+    expect(helpers.getLabel('sample_repo')).toBe('sample_repo')
+  })
 
   it('returns empty string without input & without argument', () => {
-    expect(helpers.getLabel()).toBe('');
-  });
-});
+    expect(helpers.getLabel()).toBe('')
+  })
+})

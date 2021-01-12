@@ -5,9 +5,9 @@ const _ = require('underscore')
 
 //require octokit rest.js
 //more info at https://github.com/octokit/rest.js
-const Octokit = require('@octokit/rest')
+const { Octokit } = require('@octokit/rest')
 const octokit = new Octokit({
-  auth: `token ${process.env.GITHUB_TOKEN}`
+  auth: `token ${process.env.GITHUB_TOKEN}`,
 })
 
 let baseDirectories = ''
@@ -20,9 +20,7 @@ const eventRepo = helpers.getRepo(eventOwnerAndRepo)
 
 async function prMonorepoRepoLabeler() {
   //read contents of action's event.json
-  const eventData = await helpers.readFilePromise(
-    '..' + process.env.GITHUB_EVENT_PATH
-  )
+  const eventData = await helpers.readFilePromise('..' + process.env.GITHUB_EVENT_PATH)
   const eventJSON = JSON.parse(eventData)
 
   //set eventAction and eventIssueNumber
@@ -30,17 +28,10 @@ async function prMonorepoRepoLabeler() {
   eventIssueNumber = eventJSON.pull_request.number
 
   //get list of files in PR
-  const prFiles = await helpers.listFiles(
-    octokit,
-    eventOwner,
-    eventRepo,
-    eventIssueNumber
-  )
+  const prFiles = await helpers.listFiles(octokit, eventOwner, eventRepo, eventIssueNumber)
 
   //get monorepo repo for each file
-  prFilesRepos = prFiles.map(({ filename }) =>
-    helpers.getMonorepo(baseDirectories, filename)
-  )
+  prFilesRepos = prFiles.map(({ filename }) => helpers.getMonorepo(baseDirectories, filename))
 
   //reduce to unique repos
   const prFilesReposUnique = _.uniq(prFilesRepos)
@@ -50,15 +41,9 @@ async function prMonorepoRepoLabeler() {
     if (repo) {
       console.log(`labeling repo: ${repo}`)
 
-      const repoLabel = helpers.getLabel(repo);
+      const repoLabel = helpers.getLabel(repo)
 
-      helpers.addLabel(
-        octokit,
-        eventOwner,
-        eventRepo,
-        eventIssueNumber,
-        repoLabel
-      )
+      helpers.addLabel(octokit, eventOwner, eventRepo, eventIssueNumber, repoLabel)
     }
   }
 }
