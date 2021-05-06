@@ -27,7 +27,7 @@
   "homepage": "https://www.tinkurlab.com",
   "dependencies": {
     "@octokit/rest": "^18.0.12",
-    "underscore": "^1.12.0"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "jest": "^23.6.0"
