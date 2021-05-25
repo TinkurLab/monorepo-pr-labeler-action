@@ -1,4 +1,4 @@
-FROM node:8-slim
+FROM node:14
 
 LABEL "com.github.actions.name"="Monorepo PR Repo Labeler"
 LABEL "com.github.actions.description"="Label PRs with the repo(s) that they impact for monorepos"
