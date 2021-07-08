@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
-        uses: adamzolyak/monorepo-pr-labeler-action@patching
+        uses: tinkurlab/monorepo-pr-labeler-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_DIRS: 'directory1|directory2' # optional
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
-        uses: adamzolyak/monorepo-pr-labeler-action@patching
+        uses: tinkurlab/monorepo-pr-labeler-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_DIRS: 'folderA|folderB' # optional
@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
-        uses: adamzolyak/monorepo-pr-labeler-action@patching
+        uses: tinkurlab/monorepo-pr-labeler-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -96,6 +96,12 @@ jobs:
 ## Contributing
 
 If you have suggestions for how this GitHub Action could be improved, or want to report a bug, open an issue! Or pull request! We'd love all and any contributions. For more, check out the [Contributing Guide](CONTRIBUTING.md).
+
+## Maintainers
+This repo is mainted by:
+
+* Adam Zolyak @adamzolyak
+* Anshul Sahni @anshulsahni
 
 ## License
 
