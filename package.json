@@ -30,6 +30,6 @@
     "underscore": "1.13.1"
   },
   "devDependencies": {
-    "jest": "23.6.0"
+    "jest": "27.0.6"
   }
 }
