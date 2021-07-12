@@ -26,10 +26,10 @@
   },
   "homepage": "https://www.tinkurlab.com",
   "dependencies": {
-    "@octokit/rest": "^18.0.12",
-    "underscore": "^1.12.0"
+    "@octokit/rest": "18.0.12",
+    "underscore": "1.13.1"
   },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "23.6.0"
   }
 }
