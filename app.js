@@ -20,7 +20,7 @@ const eventRepo = helpers.getRepo(eventOwnerAndRepo)
 
 async function prMonorepoRepoLabeler() {
   //read contents of action's event.json
-  const eventData = await helpers.readFilePromise('..' + process.env.GITHUB_EVENT_PATH)
+  const eventData = await helpers.readFilePromise(process.env.GITHUB_EVENT_PATH)
   const eventJSON = JSON.parse(eventData)
 
   //set eventAction and eventIssueNumber
