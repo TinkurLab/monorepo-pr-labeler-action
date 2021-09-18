@@ -52,7 +52,6 @@ node app.js
 
 If you've followed the steps above and it isn't working, trying the following:
 
-- If you don't see an Actions tab in your repo, make sure your repo is private and make sure you've been accepted into the private beta.
 - If you see the Actions tab but there isn't a comment on your new issue, click on the Log link on the action to view the log and check for errors.
 
 ## Extending
