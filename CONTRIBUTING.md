@@ -32,7 +32,8 @@ Tests are written in [Jest](https://jestjs.io/en/). Tests automatically run on p
 ### To run action locally
 
 1. `npm install` to install dependencies
-2. create a `dev` file with the following contents:
+2. create a Github Personal Access Token at https://github.com/settings/tokens
+3. create a `dev` file with the following contents:
 
 ```bash
 export GITHUB_TOKEN="12345"
@@ -44,7 +45,7 @@ export BASE_DIRS="directory1|directory2"
 node app.js
 ```
 
-3. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data
+3. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data referencing a real PR in the configured GITHUB_REPOSITORY repo
 4. run `bash dev` to run locally
 
 ## Debugging
