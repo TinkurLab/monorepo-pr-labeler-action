@@ -2,18 +2,6 @@
 
 Help us to improve this GitHub Action! We welcome your help!
 
-## Releasing
-
-In order to release a new version, you need to compile the package using `npm run build`. This will output a `dist/index.js` file.
-Then, perform the following actions:
-
-- `git add dist/index.js`
-- `git commit -m "Release x.x.x"`
-- `git tag -a -m "Release x.x.x" x.x.x`
-- `git push --follow-tags`
-
-This will push the compiled version & tag it with the new version.
-
 ## Issues and PRs
 
 If you have suggestions for how this project could be improved, or want to report a bug, open an issue! We'd love all and any contributions. If you have questions, too, we'd love to hear them.
@@ -80,6 +68,18 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocked you.
+
+## Releasing
+
+In order to release a new version, you need to compile the package using `npm run build`. This will output a `dist/index.js` file.
+Then, perform the following actions:
+
+- `git add dist/index.js`
+- `git commit -m "Release x.x.x"`
+- `git tag -a -m "Release x.x.x" x.x.x`
+- `git push --follow-tags`
+
+This will push the compiled version & tag it with the new version.
 
 ## Resources
 
