@@ -1,7 +1,7 @@
 console.log('started nodejs...')
 
 const helpers = require('./helpers')
-const _ = require('underscore')
+const uniq = require('lodash.uniq')
 
 //require octokit rest.js
 //more info at https://github.com/octokit/rest.js
@@ -34,7 +34,7 @@ async function prMonorepoRepoLabeler() {
   prFilesRepos = prFiles.map(({ filename }) => helpers.getMonorepo(baseDirectories, filename))
 
   //reduce to unique repos
-  const prFilesReposUnique = _.uniq(prFilesRepos)
+  const prFilesReposUnique = uniq(prFilesRepos)
 
   //add label for each monorepo repo
   for (const repo of prFilesReposUnique) {
