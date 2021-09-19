@@ -28,7 +28,7 @@
   "homepage": "https://www.tinkurlab.com",
   "dependencies": {
     "@octokit/rest": "18.10.0",
-    "underscore": "1.13.1"
+    "lodash.uniq": "4.5.0"
   },
   "devDependencies": {
     "@vercel/ncc": "0.31.0",
