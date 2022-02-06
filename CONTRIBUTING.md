@@ -2,18 +2,6 @@
 
 Help us to improve this GitHub Action! We welcome your help!
 
-## Releasing
-
-In order to release a new version, you need to compile the package using `npm run build`. This will output a `dist/index.js` file.
-Then, perform the following actions:
-
-- `git add dist/index.js`
-- `git commit -m "Release x.x.x"`
-- `git tag -a -m "Release x.x.x" x.x.x`
-- `git push --follow-tags`
-
-This will push the compiled version & tag it with the new version.
-
 ## Issues and PRs
 
 If you have suggestions for how this project could be improved, or want to report a bug, open an issue! We'd love all and any contributions. If you have questions, too, we'd love to hear them.
@@ -22,9 +10,7 @@ We'd also love PRs. If you're thinking of a large PR, we advise opening up an is
 
 ## Tests
 
-Tests are written in [Jest](https://jestjs.io/en/). Tests automatically run on check in.
-
-Test Status: [![CircleCI](https://circleci.com/gh/adamzolyak/monorepo-pr-labeler-action/tree/master.svg?style=svg)](https://circleci.com/gh/adamzolyak/checklist-checker-action/tree/master)
+Tests are written in [Jest](https://jestjs.io/en/). Tests automatically run on push via Github Actions.
 
 ### To run tests locally
 
@@ -34,7 +20,8 @@ Test Status: [![CircleCI](https://circleci.com/gh/adamzolyak/monorepo-pr-labeler
 ### To run action locally
 
 1. `npm install` to install dependencies
-2. create a `dev` file with the following contents:
+2. create a Github Personal Access Token at https://github.com/settings/tokens
+3. create a `dev` file with the following contents:
 
 ```bash
 export GITHUB_TOKEN="12345"
@@ -46,14 +33,13 @@ export BASE_DIRS="directory1|directory2"
 node app.js
 ```
 
-3. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data
+3. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data referencing a real PR in the configured GITHUB_REPOSITORY repo
 4. run `bash dev` to run locally
 
 ## Debugging
 
 If you've followed the steps above and it isn't working, trying the following:
 
-- If you don't see an Actions tab in your repo, make sure your repo is private and make sure you've been accepted into the private beta.
 - If you see the Actions tab but there isn't a comment on your new issue, click on the Log link on the action to view the log and check for errors.
 
 ## Extending
@@ -82,6 +68,18 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocked you.
+
+## Releasing
+
+In order to release a new version, you need to compile the package using `npm run build`. This will output a `dist/index.js` file.
+Then, perform the following actions:
+
+- `git add dist/index.js`
+- `git commit -m "Release x.x.x"`
+- `git tag -a -m "Release x.x.x" x.x.x`
+- `git push --follow-tags`
+
+This will push the compiled version & tag it with the new version.
 
 ## Resources
 

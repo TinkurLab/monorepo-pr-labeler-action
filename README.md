@@ -4,7 +4,13 @@ A [GitHub Action](https://github.com/features/actions) that labels pull requests
 
 ## How It Works
 
-This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/directory1/...` from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo. Directories that beging with a dot (ex. `/.directory/`) are ignored. The action also supports configuring a list of one or more base directories if modules are within base directories (ex. `/.directory/directory/`) such as within [Lerna projects](https://github.com/lerna/lerna), and configuring a label prefix and suffix.
+This GitHub Action runs when an [`pull_request` event webhook](https://developer.github.com/v3/activity/events/types/#issuesevent) is fired in your GitHub repo. The action checks if any of the files in the pull request are in a module (ex. `/module1/...`, `/module2/...`, from the root of the monorepo). If one or more modules are found, the pull request is labeled with a label for each module repo.
+
+Details
+
+- Directories that beginning with a dot (ex. `/.directory/`) are ignored.
+- The action supports configuring a list of one or more base directories if modules are within base directories (ex. `/base_directory1/module1/`, `/base_directory1/module2/`, `/base_directory2/module3/`) such as within [Lerna projects](https://github.com/lerna/lerna)
+- The action supports configuring label prefix and label suffix for labeling.
 
 Note: If you're migrating from version 2.x to 3.x, the automatic prefix `📁 Repo: <repo>` is now optional. If you want to keep this prefix or add a different prefix, see "Adding a custom prefix or suffix to labels" below.
 
@@ -45,10 +51,8 @@ jobs:
 
 ### Options
 
-- Add a `BASE_DIRS` variable under `env` if modules are located within a base directory(ies). You can configure one (ex. `directory1`) or more directories (ex. `directory1|directory2|...`).
+- Optionally add a `BASE_DIRS` variable under `env` if modules are located within one or more base directory(ies). You can configure one (ex. `base_directory1`) or more directories (ex. `base_directory1|bae_directory2|...`). If `BASE_DIRS` isn't specified, the action will assume the base directories in the repo are your modules (ex. `base_directory1` is a module).
 - Add `prefix` or `suffix` under `with` if you wish to add prefix or suffix the repo name in the label respectively.
-
-3. Whenever you open, edit, close, etc a pull request, the action will run!
 
 ### Example: Repos in sub directories
 
@@ -65,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
-        uses: tinkurlab/monorepo-pr-labeler-action
+        uses: tinkurlab/monorepo-pr-labeler-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_DIRS: 'folderA|folderB' # optional
@@ -86,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
-        uses: tinkurlab/monorepo-pr-labeler-action
+        uses: tinkurlab/monorepo-pr-labeler-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -98,10 +102,11 @@ jobs:
 If you have suggestions for how this GitHub Action could be improved, or want to report a bug, open an issue! Or pull request! We'd love all and any contributions. For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## Maintainers
-This repo is mainted by:
 
-* Adam Zolyak @adamzolyak
-* Anshul Sahni @anshulsahni
+This repo is maintained by:
+
+- Adam Zolyak @adamzolyak
+- Anshul Sahni @anshulsahni
 
 ## License
 
