@@ -25,7 +25,7 @@ Tests are written in [Jest](https://jestjs.io/en/). Tests automatically run on p
 
 ```bash
 export GITHUB_TOKEN="12345"
-export GITHUB_REPOSITORY="adamzolyak/actions-playground"
+export GITHUB_REPOSITORY="tinkurlab/actions-playground"
 export GITHUB_EVENT_PATH="/monorepo-pr-labeler-action/tests/fixtures/actionTrigger.json"
 
 export BASE_DIRS="directory1|directory2"
