@@ -110,4 +110,4 @@ This repo is maintained by:
 
 ## License
 
-[ISC](LICENSE) © 2019 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
+[ISC](LICENSE) © 2021 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
