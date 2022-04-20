@@ -78,7 +78,8 @@ module.exports.addLabel = function(
 module.exports.getLabel = function(repo) {
   const prefix = process.env.INPUT_PREFIX || '';
   const suffix = process.env.INPUT_SUFFIX || '';
+  const separator = process.env.INPUT_SEPARATOR || '';
   repo = repo || '';
 
-  return `${prefix} ${repo} ${suffix}`.trim();
+  return `${prefix}${process.env.INPUT_SEPARATOR}${repo}${process.env.INPUT_SEPARATOR}${suffix}`.trim();
 }
