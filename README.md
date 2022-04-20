@@ -47,12 +47,14 @@ jobs:
         with:
           prefix: 'sample_prefix' # optional
           suffix: 'sample_suffix' # optional
+          separator: ' ' # optional
 ```
 
 ### Options
 
 - Optionally add a `BASE_DIRS` variable under `env` if modules are located within one or more base directory(ies). You can configure one (ex. `base_directory1`) or more directories (ex. `base_directory1|bae_directory2|...`). If `BASE_DIRS` isn't specified, the action will assume the base directories in the repo are your modules (ex. `base_directory1` is a module).
 - Add `prefix` or `suffix` under `with` if you wish to add prefix or suffix the repo name in the label respectively.
+- Add `separator` under `with` if you wish to add a separator between the prefix, label, and suffix. For example, using a single space character `'  '` will add a space between them. By default, no separator is added.
 
 ### Example: Repos in sub directories
 
@@ -77,7 +79,7 @@ jobs:
 
 ### Example: Adding a custom prefix or suffix to labels
 
-The following configuration will prefix each label with `🗂 ` - ex.`🗂 Repo A`, `🗂 Repo B`, etc:
+The following configuration will prefix each label with `🗂` and add a space after the prefix - ex.`🗂 Repo A`, `🗂 Repo B`, etc:
 
 ```yaml
 name: Monorepo PR Repo Labeler
@@ -94,7 +96,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          prefix: '🗂 ' # optional
+          prefix: '🗂' # optional
+          separator: ' ' # optional
 ```
 
 ## Contributing
