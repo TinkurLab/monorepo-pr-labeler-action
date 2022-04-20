@@ -81,5 +81,5 @@ module.exports.getLabel = function(repo) {
   const separator = process.env.INPUT_SEPARATOR || '';
   repo = repo || '';
 
-  return `${prefix}${process.env.INPUT_SEPARATOR}${repo}${process.env.INPUT_SEPARATOR}${suffix}`.trim();
+  return `${prefix}${separator}${repo}${separator}${suffix}`.trim();
 }
