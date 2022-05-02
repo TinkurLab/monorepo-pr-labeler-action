@@ -91,25 +91,51 @@ describe('getLabel', () => {
 
     const repoName = 'sample_repo'
 
-    expect(helpers.getLabel(repoName)).toBe('sample_prefix sample_repo sample_suffix')
+    expect(helpers.getLabel(repoName)).toBe('sample_prefixsample_reposample_suffix')
   })
 
   it('Returns label only with suffix when only suffix passed as input', () => {
     process.env.INPUT_SUFFIX = 'sample_suffix'
     const repoName = 'sample_repo'
 
-    expect(helpers.getLabel(repoName)).toBe('sample_repo sample_suffix')
+    expect(helpers.getLabel(repoName)).toBe('sample_reposample_suffix')
   })
 
   it('Returns label only with prefix when only prefix passed as input', () => {
     process.env.INPUT_SUFFIX = 'sample_prefix'
     const repoName = 'sample_repo'
 
-    expect(helpers.getLabel(repoName)).toBe('sample_repo sample_prefix')
+    expect(helpers.getLabel(repoName)).toBe('sample_reposample_prefix')
   })
 
   it('Returns only repo name when no prefix & suffix', () => {
     expect(helpers.getLabel('sample_repo')).toBe('sample_repo')
+  })
+  
+    it('Returns label with prefix & suffic attached to repo name with space', () => {
+    process.env.INPUT_SEPARATOR = ' '
+    process.env.INPUT_PREFIX = 'sample_prefix'
+    process.env.INPUT_SUFFIX = 'sample_suffix'
+
+    const repoName = 'sample_repo'
+
+    expect(helpers.getLabel(repoName)).toBe('sample_prefix sample_repo sample_suffix')
+  })
+
+  it('Returns label only with suffix when only suffix passed as input with space', () => {
+    process.env.INPUT_SEPARATOR = ' '
+    process.env.INPUT_SUFFIX = 'sample_suffix'
+    const repoName = 'sample_repo'
+
+    expect(helpers.getLabel(repoName)).toBe('sample_repo sample_suffix')
+  })
+
+  it('Returns label only with prefix when only prefix passed as input with space', () => {
+    process.env.INPUT_SEPARATOR = ' '
+    process.env.INPUT_SUFFIX = 'sample_prefix'
+    const repoName = 'sample_repo'
+
+    expect(helpers.getLabel(repoName)).toBe('sample_repo sample_prefix')
   })
 
   it('returns empty string without input & without argument', () => {
