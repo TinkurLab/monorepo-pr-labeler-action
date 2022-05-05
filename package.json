@@ -27,7 +27,7 @@
   },
   "homepage": "https://www.tinkurlab.com",
   "dependencies": {
-    "@octokit/rest": "18.10.0",
+    "@actions/github": "^5.0.1",
     "lodash.uniq": "4.5.0"
   },
   "devDependencies": {

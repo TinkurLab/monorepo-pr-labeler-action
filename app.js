@@ -5,10 +5,8 @@ const uniq = require('lodash.uniq')
 
 //require octokit rest.js
 //more info at https://github.com/octokit/rest.js
-const { Octokit } = require('@octokit/rest')
-const octokit = new Octokit({
-  auth: `token ${process.env.GITHUB_TOKEN}`,
-})
+const github = require('@actions/github')
+const octokit = github.getOctokit(process.env.GITHUB_TOKEN)
 
 let baseDirectories = ''
 if (process.env.BASE_DIRS) baseDirectories = `(?:${process.env.BASE_DIRS})\/`
@@ -49,6 +47,6 @@ async function prMonorepoRepoLabeler() {
 }
 
 //run the function
-prMonorepoRepoLabeler()
+prMonorepoRepoLabeler().catch(console.error)
 
 module.exports.prMonorepoRepoLabeler = prMonorepoRepoLabeler

@@ -68,14 +68,16 @@ describe('getMonorepo', () => {
 describe('addLabel', () => {
   it('should add label to issue', async () => {
     let octokit = {
-      issues: {
-        addLabels: jest.fn().mockResolvedValue({ something: 'something' }),
-      },
+      rest: {
+        issues: {
+          addLabels: jest.fn().mockResolvedValue({ something: 'something' }),
+        },
+      }
     }
 
     const result = await helpers.addLabel(octokit, 'waffleio', 'waffle.io', '1', 'Incomplete Tasks')
-    expect(octokit.issues.addLabels).toHaveBeenCalledTimes(1)
-    expect(octokit.issues.addLabels.mock.calls[0][0].labels).toEqual(['Incomplete Tasks'])
+    expect(octokit.rest.issues.addLabels).toHaveBeenCalledTimes(1)
+    expect(octokit.rest.issues.addLabels.mock.calls[0][0].labels).toEqual(['Incomplete Tasks'])
   })
 })
 

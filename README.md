@@ -11,6 +11,7 @@ Details
 - Directories that beginning with a dot (ex. `/.directory/`) are ignored.
 - The action supports configuring a list of one or more base directories if modules are within base directories (ex. `/base_directory1/module1/`, `/base_directory1/module2/`, `/base_directory2/module3/`) such as within [Lerna projects](https://github.com/lerna/lerna)
 - The action supports configuring label prefix and label suffix for labeling.
+- The action supports use on GHES instances!
 
 Note: If you're migrating from version 2.x to 3.x, the automatic prefix `📁 Repo: <repo>` is now optional. If you want to keep this prefix or add a different prefix, see "Adding a custom prefix or suffix to labels" below.
 

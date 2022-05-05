@@ -27,7 +27,7 @@ module.exports.listFiles = async function(
   eventRepo,
   eventIssueNumber
 ) {
-  const options = octokit.pulls.listFiles.endpoint.merge({
+  const options = octokit.rest.pulls.listFiles.endpoint.merge({
     owner: eventOwner,
     repo: eventRepo,
     pull_number: eventIssueNumber
@@ -60,7 +60,7 @@ module.exports.addLabel = function(
   eventIssueNumber,
   label
 ) {
-  octokit.issues
+  octokit.rest.issues
     .addLabels({
       owner: eventOwner,
       repo: eventRepo,
