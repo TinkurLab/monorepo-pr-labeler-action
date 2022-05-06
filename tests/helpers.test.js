@@ -1,8 +1,4 @@
 const helpers = require('../helpers')
-let { octokit } = require('@octokit/rest')
-
-octokit = jest.fn()
-octokit.authenticate = jest.fn()
 
 describe('getOwner', () => {
   it('should return owner when passed GITHUB_REPOSITORY env variable', () => {
