@@ -101,6 +101,13 @@ jobs:
           separator: ' ' # optional
 ```
 
+## Upgrading
+
+You can pin the action version (ex. `uses: tinkurlab/monorepo-pr-labeler-action@4.x.x`) to avoid issues due to breaking changes in major version updates.
+
+### Upgrading to v4.x.x
+Version 4.x.x changes the previous functionlity of v3.x.x which automatically added a space between the package name a prefix (if configured) or a suffix (if configured) when labeling pull requests. Starting with version 4.0.0, if a prefix or suffix is configured, an optional seperator can be configured via the `separator: ' '` property. This property can be used to add a space or other seperator. If no `separator` property is configured, no space or other seperator will be included in the label. It is recommended that you update your action configuration before upgrading to v4.x.x. 
+
 ## Contributing
 
 If you have suggestions for how this GitHub Action could be improved, or want to report a bug, open an issue! Or pull request! We'd love all and any contributions. For more, check out the [Contributing Guide](CONTRIBUTING.md).
