@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label PRs
-        uses: tinkurlab/monorepo-pr-labeler-action@master
+        uses: TinkurLab/monorepo-pr-labeler-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_DIRS: 'folderA|folderB' # optional
