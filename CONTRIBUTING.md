@@ -15,26 +15,15 @@ Tests are written in [Jest](https://jestjs.io/en/). Tests automatically run on p
 ### To run tests locally
 
 1. run `npm install` to install dependencies
-2. run `npm test` to run tests
+1. run `npm test` to run tests
 
 ### To run action locally
 
 1. `npm install` to install dependencies
-2. create a Github Personal Access Token at https://github.com/settings/tokens
-3. create a `dev` file with the following contents:
-
-```bash
-export GITHUB_TOKEN="12345"
-export GITHUB_REPOSITORY="tinkurlab/actions-playground"
-export GITHUB_EVENT_PATH="/monorepo-pr-labeler-action/tests/fixtures/actionTrigger.json"
-
-export BASE_DIRS="directory1|directory2"
-
-node app.js
-```
-
-3. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data referencing a real PR in the configured GITHUB_REPOSITORY repo
-4. run `bash dev` to run locally
+1. create a Github Personal Access Token at https://github.com/settings/tokens
+1. create a `.env` file similar to `.env.example`
+1. modify contents of [/tests/fixtures/actionTrigger.json](./tests/fixtures/actionTrigger.json) as needed for test data referencing a real PR in the configured GITHUB_REPOSITORY repo
+1. run `npm start` to run locally
 
 ## Debugging
 

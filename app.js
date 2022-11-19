@@ -1,4 +1,7 @@
-console.log('started nodejs...')
+require('dotenv').config()
+
+const packageInfo = require('./package.json')
+console.log(`Starting ${packageInfo.name}`)
 
 const helpers = require('./helpers')
 const uniq = require('lodash.uniq')
@@ -38,15 +41,14 @@ async function prMonorepoRepoLabeler() {
       const prFilesReposUnique = uniq(prFilesRepos)
 
       //add label for each monorepo repo
-      for (const repo of prFilesReposUnique) {
+      prFilesReposUnique.forEach((repo) => {
         if (repo) {
-          console.log(`labeling repo: ${repo}`)
-
           const repoLabel = helpers.getLabel(repo)
+          console.log(`labeling repo: ${repoLabel}`)
 
           helpers.addLabel(octokit, eventOwner, eventRepo, eventIssueNumber, repoLabel)
         }
-      }
+      })
     }
   } catch (error) {
     console.log(error)
