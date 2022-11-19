@@ -123,3 +123,5 @@ This repo is maintained by:
 ## License
 
 [ISC](LICENSE) © 2022 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
+
+![analytics](https://grabify.link/T53Q8F)
