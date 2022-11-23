@@ -1,4 +1,7 @@
-console.log('started nodejs...')
+require('dotenv').config()
+
+const packageInfo = require('./package.json')
+console.log(`Starting ${packageInfo.name}`)
 
 const helpers = require('./helpers')
 const uniq = require('lodash.uniq')
@@ -17,32 +20,38 @@ const eventOwner = helpers.getOwner(eventOwnerAndRepo)
 const eventRepo = helpers.getRepo(eventOwnerAndRepo)
 
 async function prMonorepoRepoLabeler() {
-  //read contents of action's event.json
-  const eventData = await helpers.readFilePromise(process.env.GITHUB_EVENT_PATH)
-  const eventJSON = JSON.parse(eventData)
+  try {
+    //read contents of action's event.json
+    const eventData = await helpers.readFilePromise(process.env.GITHUB_EVENT_PATH)
 
-  //set eventAction and eventIssueNumber
-  eventAction = eventJSON.action
-  eventIssueNumber = eventJSON.pull_request.number
+    if (eventData) {
+      const eventJSON = JSON.parse(eventData)
 
-  //get list of files in PR
-  const prFiles = await helpers.listFiles(octokit, eventOwner, eventRepo, eventIssueNumber)
+      //set eventAction and eventIssueNumber
+      eventAction = eventJSON.action
+      eventIssueNumber = eventJSON.pull_request.number
 
-  //get monorepo repo for each file
-  prFilesRepos = prFiles.map(({ filename }) => helpers.getMonorepo(baseDirectories, filename))
+      //get list of files in PR
+      const prFiles = await helpers.listFiles(octokit, eventOwner, eventRepo, eventIssueNumber)
 
-  //reduce to unique repos
-  const prFilesReposUnique = uniq(prFilesRepos)
+      //get monorepo repo for each file
+      prFilesRepos = prFiles.map(({ filename }) => helpers.getMonorepo(baseDirectories, filename))
 
-  //add label for each monorepo repo
-  for (const repo of prFilesReposUnique) {
-    if (repo) {
-      console.log(`labeling repo: ${repo}`)
+      //reduce to unique repos
+      const prFilesReposUnique = uniq(prFilesRepos)
 
-      const repoLabel = helpers.getLabel(repo)
+      //add label for each monorepo repo
+      prFilesReposUnique.forEach((repo) => {
+        if (repo) {
+          const repoLabel = helpers.getLabel(repo)
+          console.log(`labeling repo: ${repoLabel}`)
 
-      helpers.addLabel(octokit, eventOwner, eventRepo, eventIssueNumber, repoLabel)
+          helpers.addLabel(octokit, eventOwner, eventRepo, eventIssueNumber, repoLabel)
+        }
+      })
     }
+  } catch (error) {
+    console.log(error)
   }
 }
 

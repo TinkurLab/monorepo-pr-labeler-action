@@ -55,7 +55,7 @@ jobs:
 
 - Optionally add a `BASE_DIRS` variable under `env` if modules are located within one or more base directory(ies). You can configure one (ex. `base_directory1`) or more directories (ex. `base_directory1|bae_directory2|...`). If `BASE_DIRS` isn't specified, the action will assume the base directories in the repo are your modules (ex. `base_directory1` is a module).
 - Add `prefix` or `suffix` under `with` if you wish to add prefix or suffix the repo name in the label respectively.
-- Add `separator` under `with` if you wish to add a separator between the prefix, label, and suffix. For example, using a single space character `'  '` will add a space between them. By default, no separator is added.
+- Add `separator` under `with` if you wish to add a separator between the prefix, label, and suffix. For example, using a single space character `' '` will add a space between them. By default, no separator is added.
 
 ### Example: Repos in sub directories
 
@@ -105,8 +105,9 @@ jobs:
 
 You can pin the action version (ex. `uses: tinkurlab/monorepo-pr-labeler-action@4.x.x`) to avoid issues due to breaking changes in major version updates.
 
-### Upgrading to v4.x.x
-Version 4.x.x changes the previous functionlity of v3.x.x which automatically added a space between the package name a prefix (if configured) or a suffix (if configured) when labeling pull requests. Starting with version 4.0.0, if a prefix or suffix is configured, an optional seperator can be configured via the `separator: ' '` property. This property can be used to add a space or other seperator. If no `separator` property is configured, no space or other seperator will be included in the label. It is recommended that you update your action configuration before upgrading to v4.x.x. 
+### Upgrading to v4.x.x or >
+
+Version 4.x.x changes the previous functionlity of v3.x.x which automatically added a space between the package name a prefix (if configured) or a suffix (if configured) when labeling pull requests. Starting with version 4.0.0, if a prefix or suffix is configured, an optional seperator can be configured via the `separator: ' '` property. This property can be used to add a space or other seperator. If no `separator` property is configured, no space or other seperator will be included in the label. It is recommended that you update your action configuration before upgrading to v4.x.x.
 
 ## Contributing
 
@@ -121,4 +122,6 @@ This repo is maintained by:
 
 ## License
 
-[ISC](LICENSE) © 2021 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
+[ISC](LICENSE) © 2022 Adam Zolyak <adam@tinkurlab.com> (www.tinkurlab.com)
+
+![analytics](https://grabify.link/T53Q8F)

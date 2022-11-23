@@ -1,5 +1,5 @@
-name: "Monorepo PR Repo Labeler"
-description: "Monorepo PR Repo Labeler"
+name: 'Monorepo PR Repo Labeler'
+description: 'Monorepo PR Repo Labeler'
 inputs:
   prefix:
     description: Prefix to repo name to be used in label
@@ -11,8 +11,8 @@ inputs:
     description: Seperator between prefix, label, and suffix (e.g., space)
     required: false
 runs:
-  using: node12
+  using: node16
   main: dist/index.js
 branding:
-  icon: "git-merge"
-  color: "green"
+  icon: 'git-merge'
+  color: 'green'
