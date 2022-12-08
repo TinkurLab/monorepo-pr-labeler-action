@@ -40,7 +40,7 @@ module.exports.listFiles = async function (octokit, eventOwner, eventRepo, event
 }
 
 module.exports.getMonorepo = function (baseDirectories, filePath) {
-  const regexPattern = `^${baseDirectories}([^./]*)/`
+  const regexPattern = `^${baseDirectories}(?![\.])([^/]*)/`
   var regex = new RegExp(regexPattern)
   var found = filePath.match(regex)
 

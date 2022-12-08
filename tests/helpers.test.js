@@ -59,6 +59,15 @@ describe('getMonorepo', () => {
 
     expect(result).toBe(false)
   })
+
+  it('should return monorepo if monorepo contains a "." but does not starts with a .', async () => {
+    const fileName = 'www.site.com/main.workflow'
+    const baseDirectories = ''
+
+    const result = await helpers.getMonorepo(baseDirectories, fileName)
+
+    expect(result).toBe('www.site.com')
+  })
 })
 
 describe('addLabel', () => {
