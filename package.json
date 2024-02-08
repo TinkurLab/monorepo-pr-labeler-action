@@ -2,7 +2,7 @@
   "name": "actions_monorepoprlabeler",
   "description": "A GitHub Action that labels pull requests with the repo(s) that they impact for monorepos.",
   "engines": {
-    "node": "^16.16.0"
+    "node": ">=16.16.0"
   },
   "main": "app.js",
   "scripts": {
@@ -35,6 +35,6 @@
     "jest": "27.2.0"
   },
   "volta": {
-    "node": "^16.16.0"
+    "node": ">=16.16.0"
   }
 }

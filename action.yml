@@ -11,7 +11,7 @@ inputs:
     description: Seperator between prefix, label, and suffix (e.g., space)
     required: false
 runs:
-  using: node16
+  using: node20
   main: dist/index.js
 branding:
   icon: 'git-merge'
